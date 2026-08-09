@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import './App.css';
+import './UserProfile.css';
 
 // Constants
 const countries = [
@@ -12,8 +12,8 @@ const currencies = [
   'AUD'
 ];
 
-// App Component
-function App() {
+// UserProfile Component
+function UserProfile() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
@@ -188,4 +188,4 @@ function App() {
   );
 }
 
-export default App;
+export default UserProfile;
