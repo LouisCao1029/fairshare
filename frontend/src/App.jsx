@@ -67,14 +67,31 @@ function App() {
   }
 
   // Handle form submission
-  function handleSubmit(event) {
+  async function handleSubmit(event) {
     event.preventDefault();
+
     const validationErrors = validate();
     setErrors(validationErrors);
 
     if (Object.keys(validationErrors).length === 0) {
-      console.log('Form submitted successfully:', { age, email, password, country, currency });
+
+      const profile = {
+        age: Number(age),
+        email: email,
+        password: password,
+        country: country,
+        currency: currency
+      };
+
+      const response = await fetch('http://localhost:8080/profile', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(profile)
+      });
     }
+
   }
 
   return (
@@ -153,7 +170,7 @@ function App() {
 
           <button type="submit">Create Profile</button>
         </form> {/* FIX 1: Matching closing form tag */}
-        
+
       </div>
     </div>
   );
