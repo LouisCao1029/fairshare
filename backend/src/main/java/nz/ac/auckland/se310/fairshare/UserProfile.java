@@ -54,6 +54,11 @@ public class UserProfile {
   }
 
   public void setPassword(String password) {
+    //
+    //
+    // TODO: Hash the password before storing it (BCrypt)
+    //
+    //
     this.password = password;
   }
 
