@@ -1,10 +1,9 @@
 package nz.ac.auckland.se310.fairshare;
 
 public class UserProfile {
-  
-  private int age;
-  private String email;
+  private String username;
   private String password;
+  private String email;
   private String country;
   private String currency;
 
@@ -14,10 +13,10 @@ public class UserProfile {
   //
   //
 
-  public UserProfile(int age, String password, String email, String country, String currency) {
-    this.age = age;
-    this.email = email;
+  public UserProfile(String username, String password, String email, String country, String currency) {
+    this.username = username;
     this.password = password;
+    this.email = email;
     this.country = country;
     this.currency = currency;
   }
@@ -30,16 +29,16 @@ public class UserProfile {
   //
   //
 
-  public int getAge() {
-    return age;
-  }
-
-  public String getEmail() {
-    return email;
+  public String getUsername() {
+    return username;
   }
 
   public String getPassword() {
     return password;
+  }
+
+  public String getEmail() {
+    return email;
   }
 
   public String getCountry() {
@@ -50,16 +49,16 @@ public class UserProfile {
     return currency;
   }
 
-  public void setAge(int age) {
-    this.age = age;
-  }
-
-  public void setEmail(String email) {
-    this.email = email;
+  public void setUsername(String username) {
+    this.username = username;
   }
 
   public void setPassword(String password) {
     this.password = password;
+  }
+
+  public void setEmail(String email) {
+    this.email = email;
   }
 
   public void setCountry(String country) {

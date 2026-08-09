@@ -14,9 +14,9 @@ const currencies = [
 
 // App Component
 function App() {
-  const [age, setAge] = useState('');
-  const [email, setEmail] = useState('');
+  const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
   const [country, setCountry] = useState('');
   const [currency, setCurrency] = useState('');
   const [errors, setErrors] = useState({});
@@ -37,16 +37,16 @@ function App() {
   function validate() {
     const newErrors = {};
 
-    if (!age) {
-      newErrors.age = 'Age is required';
-    } else if (age < 0 || age > 100) {
-      newErrors.age = 'Age must be between 0 and 100';
-    }
-
     if (!email) {
       newErrors.email = 'Email is required';
     } else if (!/\S+@\S+\.\S+/.test(email)) {
       newErrors.email = 'Email is invalid';
+    }
+
+    if (!username) {
+      newErrors.username = 'Username is required';
+    } else if (username.length < 8) {
+      newErrors.username = 'Username must be at least 8 characters';
     }
 
     if (!password) {
@@ -76,7 +76,7 @@ function App() {
     if (Object.keys(validationErrors).length === 0) {
 
       const profile = {
-        age: Number(age),
+        username: username,
         email: email,
         password: password,
         country: country,
@@ -90,8 +90,20 @@ function App() {
         },
         body: JSON.stringify(profile)
       });
-    }
 
+
+      if (response.status === 409) {
+        setErrors({
+          email: 'Email is already registered'
+        });
+      } else {
+        //
+        //
+        // TODO: Redirect to the next page.
+        //
+        //
+      }
+    }
   }
 
   return (
@@ -100,30 +112,18 @@ function App() {
         <h1>Create Your Profile</h1>
         <p className="subtitle">Enter your information below</p>
 
-        {/* FIX 1: Changed outer div to <form> and attached onSubmit */}
         <form onSubmit={handleSubmit}>
-          <div className="form-group">
-            <label htmlFor="age">Age</label>
-            <input
-              id="age"
-              type="number"
-              value={age}
-              placeholder="Enter your age"
-              onChange={(event) => setAge(event.target.value)}
-            />
-            {errors.age && <span className="error">{errors.age}</span>}
-          </div>
 
           <div className="form-group">
-            <label htmlFor="email">Email</label>
+            <label htmlFor="username">Username</label>
             <input
-              id="email"
-              type="email"
-              value={email}
-              placeholder="Enter your email"
-              onChange={(event) => setEmail(event.target.value)}
+              id="username"
+              type="text"
+              value={username}
+              placeholder="Enter your username"
+              onChange={(event) => setUsername(event.target.value)}
             />
-            {errors.email && <span className="error">{errors.email}</span>}
+            {errors.username && <span className="error">{errors.username}</span>}
           </div>
 
           <div className="form-group">
@@ -136,6 +136,18 @@ function App() {
               onChange={(event) => setPassword(event.target.value)}
             />
             {errors.password && <span className="error">{errors.password}</span>}
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="email">Email</label>
+            <input
+              id="email"
+              type="email"
+              value={email}
+              placeholder="Enter your email"
+              onChange={(event) => setEmail(event.target.value)}
+            />
+            {errors.email && <span className="error">{errors.email}</span>}
           </div>
 
           <div className="form-group">
@@ -169,7 +181,7 @@ function App() {
           </div>
 
           <button type="submit">Create Profile</button>
-        </form> {/* FIX 1: Matching closing form tag */}
+        </form>
 
       </div>
     </div>
