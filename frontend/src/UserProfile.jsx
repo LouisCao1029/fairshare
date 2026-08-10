@@ -12,6 +12,8 @@ const currencies = [
   'AUD'
 ];
 
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 // UserProfile Component
 function UserProfile() {
   const [username, setUsername] = useState('');
@@ -39,7 +41,7 @@ function UserProfile() {
 
     if (!email) {
       newErrors.email = 'Email is required';
-    } else if (!/\S+@\S+\.\S+/.test(email)) {
+    } else if (!emailRegex.test(email)) {
       newErrors.email = 'Email is invalid';
     }
 
