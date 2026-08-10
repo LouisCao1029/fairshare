@@ -21,8 +21,8 @@ class UserManagerTests {
                 "testuser",
                 "password123",
                 "test@example.com",
-                "New Zealand",
-                "NZD"
+                UserProfile.Country.NEW_ZEALAND,
+                UserProfile.Currency.NZD
         );
 
         boolean result = userManager.registerUser(profile);
@@ -36,16 +36,16 @@ class UserManagerTests {
                 "user1",
                 "password123",
                 "test@example.com",
-                "New Zealand",
-                "NZD"
+                UserProfile.Country.NEW_ZEALAND,
+                UserProfile.Currency.NZD
         );
 
         UserProfile secondProfile = new UserProfile(
                 "user2",
                 "password123",
                 "test@example.com",
-                "New Zealand",
-                "NZD"
+                UserProfile.Country.NEW_ZEALAND,
+                UserProfile.Currency.NZD
         );
 
         assertTrue(userManager.registerUser(firstProfile));
@@ -58,16 +58,16 @@ class UserManagerTests {
                 "user1",
                 "password123",
                 "Test@Example.com",
-                "New Zealand",
-                "NZD"
+                UserProfile.Country.NEW_ZEALAND,
+                UserProfile.Currency.NZD
         );
 
         UserProfile secondProfile = new UserProfile(
                 "user2",
                 "password123",
                 "test@example.com",
-                "New Zealand",
-                "NZD"
+                UserProfile.Country.NEW_ZEALAND,
+                UserProfile.Currency.NZD
         );
 
         assertTrue(userManager.registerUser(firstProfile));
@@ -80,16 +80,16 @@ class UserManagerTests {
                 "user1",
                 "password123",
                 "test@example.com",
-                "New Zealand",
-                "NZD"
+                UserProfile.Country.NEW_ZEALAND,
+                UserProfile.Currency.NZD
         );
 
         UserProfile secondProfile = new UserProfile(
                 "user2",
                 "password123",
                 "  test@example.com  ",
-                "New Zealand",
-                "NZD"
+                UserProfile.Country.NEW_ZEALAND,
+                UserProfile.Currency.NZD
         );
 
         assertTrue(userManager.registerUser(firstProfile));

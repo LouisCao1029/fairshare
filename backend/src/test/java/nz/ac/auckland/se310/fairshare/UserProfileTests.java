@@ -12,15 +12,15 @@ class UserProfileTests {
                 "testuser",
                 "password123",
                 "test@example.com",
-                "New Zealand",
-                "NZD"
+                UserProfile.Country.NEW_ZEALAND,
+                UserProfile.Currency.NZD
         );
 
         assertEquals("testuser", profile.getUsername());
         assertEquals("password123", profile.getPassword());
         assertEquals("test@example.com", profile.getEmail());
-        assertEquals("New Zealand", profile.getCountry());
-        assertEquals("NZD", profile.getCurrency());
+        assertEquals(UserProfile.Country.NEW_ZEALAND, profile.getCountry());
+        assertEquals(UserProfile.Currency.NZD, profile.getCurrency());
     }
 
     @Test
@@ -65,17 +65,17 @@ class UserProfileTests {
     void testSetCountry() {
         UserProfile profile = new UserProfile();
 
-        profile.setCountry("New Zealand");
+        profile.setCountry(UserProfile.Country.NEW_ZEALAND);
 
-        assertEquals("New Zealand", profile.getCountry());
+        assertEquals(UserProfile.Country.NEW_ZEALAND, profile.getCountry());
     }
 
     @Test
     void testSetCurrency() {
         UserProfile profile = new UserProfile();
 
-        profile.setCurrency("NZD");
+        profile.setCurrency(UserProfile.Currency.NZD);
 
-        assertEquals("NZD", profile.getCurrency());
+        assertEquals(UserProfile.Currency.NZD, profile.getCurrency());
     }
 }

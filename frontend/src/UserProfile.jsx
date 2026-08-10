@@ -3,8 +3,8 @@ import './UserProfile.css';
 
 // Constants
 const countries = [
-  { name: 'New Zealand', currency: 'NZD' },
-  { name: 'Australia', currency: 'AUD' }
+  { name: 'New Zealand', value: 'NEW_ZEALAND', currency: 'NZD' },
+  { name: 'Australia', value: 'AUSTRALIA', currency: 'AUD' }
 ];
 
 const currencies = [
@@ -26,7 +26,7 @@ function UserProfile() {
     setCountry(selectedCountry);
 
     const countryData = countries.find(
-      (c) => c.name === selectedCountry
+      (c) => c.value === selectedCountry
     );
 
     if (countryData) {
@@ -155,7 +155,7 @@ function UserProfile() {
             <select id="country" value={country} onChange={handleCountryChange}>
               <option value="">Select your country</option>
               {countries.map((c) => (
-                <option key={c.name} value={c.name}>
+                <option key={c.value} value={c.value}>
                   {c.name}
                 </option>
               ))}

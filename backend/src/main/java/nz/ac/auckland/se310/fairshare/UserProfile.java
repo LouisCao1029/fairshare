@@ -1,33 +1,35 @@
 package nz.ac.auckland.se310.fairshare;
 
 public class UserProfile {
+
+  public enum Country {
+        NEW_ZEALAND,
+        AUSTRALIA
+        //Add more countries as needed
+    }
+
+  public enum Currency {
+        NZD,
+        AUD
+        //Add more currencies as needed
+    }
+
   private String username;
   private String password;
   private String email;
-  private String country;
-  private String currency;
+  private Country country;
+  private Currency currency;
 
-  //
-  //
-  // Constructor and default constructor
-  //
-  //
-
-  public UserProfile(String username, String password, String email, String country, String currency) {
+  public UserProfile(String username, String password, String email, Country country, Currency currency) {
     this.username = username;
     this.password = password;
     this.email = email;
     this.country = country;
     this.currency = currency;
   }
-
+  
   public UserProfile() {}
 
-  //
-  //
-  // Getters and Setters
-  //
-  //
 
   public String getUsername() {
     return username;
@@ -41,11 +43,11 @@ public class UserProfile {
     return email;
   }
 
-  public String getCountry() {
+  public Country getCountry() {
     return country;
   }
 
-  public String getCurrency() {
+  public Currency getCurrency() {
     return currency;
   }
 
@@ -54,11 +56,9 @@ public class UserProfile {
   }
 
   public void setPassword(String password) {
-    //
-    //
+
     // TODO: Hash the password before storing it (BCrypt)
-    //
-    //
+
     this.password = password;
   }
 
@@ -66,11 +66,11 @@ public class UserProfile {
     this.email = email;
   }
 
-  public void setCountry(String country) {
+  public void setCountry(Country country) {
     this.country = country;
   }
 
-  public void setCurrency(String currency) {
+  public void setCurrency(Currency currency) {
     this.currency = currency;
   }
 }
