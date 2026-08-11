@@ -47,8 +47,8 @@ function UserProfile() {
 
     if (!username) {
       newErrors.username = 'Username is required';
-    } else if (username.length < 8) {
-      newErrors.username = 'Username must be at least 8 characters';
+    } else if (username.length < 3) {
+      newErrors.username = 'Username must be at least 3 characters';
     }
 
     if (!password) {
@@ -68,7 +68,6 @@ function UserProfile() {
     return newErrors;
   }
 
-  // Handle form submission
   async function handleSubmit(event) {
     event.preventDefault();
 
@@ -85,7 +84,7 @@ function UserProfile() {
         currency: currency
       };
 
-      const response = await fetch('http://localhost:8080/profile', {
+      const response = await fetch('http://localhost:8080/users/profile', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

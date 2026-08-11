@@ -1,7 +1,6 @@
 package nz.ac.auckland.se310.fairshare.Controllers;
 
-import nz.ac.auckland.se310.fairshare.UserManager;
-
+import nz.ac.auckland.se310.fairshare.model.UserDB;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +20,9 @@ class UserProfileControllerIntegrationTests {
     @Autowired
     private WebApplicationContext context;
 
+    @Autowired
+    private UserDB userDB;
+
     private MockMvc mockMvc;
 
     @BeforeEach
@@ -29,7 +31,7 @@ class UserProfileControllerIntegrationTests {
                 .webAppContextSetup(context)
                 .build();
 
-        UserManager.getInstance().clearRegisteredEmails();
+        userDB.clear();
     }
 
     @Test
@@ -45,7 +47,7 @@ class UserProfileControllerIntegrationTests {
                 }
                 """;
 
-        mockMvc.perform(post("/profile")
+        mockMvc.perform(post("/users/profile")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(profileJson))
                 .andExpect(status().isOk())
@@ -65,14 +67,12 @@ class UserProfileControllerIntegrationTests {
                 }
                 """;
 
-        // First profile should be created successfully
-        mockMvc.perform(post("/profile")
+        mockMvc.perform(post("/users/profile")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(profileJson))
                 .andExpect(status().isOk());
 
-        // Second profile with the same email should fail
-        mockMvc.perform(post("/profile")
+        mockMvc.perform(post("/users/profile")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(profileJson))
                 .andExpect(status().isConflict())
@@ -102,12 +102,12 @@ class UserProfileControllerIntegrationTests {
                 }
                 """;
 
-        mockMvc.perform(post("/profile")
+        mockMvc.perform(post("/users/profile")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(firstProfile))
                 .andExpect(status().isOk());
 
-        mockMvc.perform(post("/profile")
+        mockMvc.perform(post("/users/profile")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(secondProfile))
                 .andExpect(status().isConflict());
@@ -136,12 +136,12 @@ class UserProfileControllerIntegrationTests {
                 }
                 """;
 
-        mockMvc.perform(post("/profile")
+        mockMvc.perform(post("/users/profile")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(firstProfile))
                 .andExpect(status().isOk());
 
-        mockMvc.perform(post("/profile")
+        mockMvc.perform(post("/users/profile")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(secondProfile))
                 .andExpect(status().isConflict());

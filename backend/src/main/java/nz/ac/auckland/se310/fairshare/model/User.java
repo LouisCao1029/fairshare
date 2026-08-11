@@ -1,18 +1,18 @@
-package nz.ac.auckland.se310.fairshare;
+package nz.ac.auckland.se310.fairshare.model;
 
-public class UserProfile {
+public class User {
 
   public enum Country {
-        NEW_ZEALAND,
-        AUSTRALIA
-        //Add more countries as needed
-    }
+    NEW_ZEALAND,
+    AUSTRALIA
+    // Add more countries as needed
+  }
 
   public enum Currency {
-        NZD,
-        AUD
-        //Add more currencies as needed
-    }
+    NZD,
+    AUD
+    // Add more currencies as needed
+  }
 
   private String username;
   private String password;
@@ -20,16 +20,15 @@ public class UserProfile {
   private Country country;
   private Currency currency;
 
-  public UserProfile(String username, String password, String email, Country country, Currency currency) {
+  public User() {}
+
+  public User(String username, String password, String email, Country country, Currency currency) {
     this.username = username;
     this.password = password;
-    this.email = email;
+    this.email = email.trim().toLowerCase();
     this.country = country;
     this.currency = currency;
   }
-  
-  public UserProfile() {}
-
 
   public String getUsername() {
     return username;
@@ -63,7 +62,7 @@ public class UserProfile {
   }
 
   public void setEmail(String email) {
-    this.email = email;
+    this.email = email.trim().toLowerCase();
   }
 
   public void setCountry(Country country) {

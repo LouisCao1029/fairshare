@@ -1,81 +1,82 @@
 package nz.ac.auckland.se310.fairshare;
 
-import org.junit.jupiter.api.Test;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-class UserProfileTests {
+import nz.ac.auckland.se310.fairshare.model.User;
+import org.junit.jupiter.api.Test;
 
-    @Test
-    void testConstructor() {
-        UserProfile profile = new UserProfile(
-                "testuser",
-                "password123",
-                "test@example.com",
-                UserProfile.Country.NEW_ZEALAND,
-                UserProfile.Currency.NZD
-        );
+class UserTests {
 
-        assertEquals("testuser", profile.getUsername());
-        assertEquals("password123", profile.getPassword());
-        assertEquals("test@example.com", profile.getEmail());
-        assertEquals(UserProfile.Country.NEW_ZEALAND, profile.getCountry());
-        assertEquals(UserProfile.Currency.NZD, profile.getCurrency());
-    }
+  @Test
+  void testConstructor() {
+    User user =
+        new User(
+            "testuser",
+            "password123",
+            "test@example.com",
+            User.Country.NEW_ZEALAND,
+            User.Currency.NZD);
 
-    @Test
-    void testDefaultConstructor() {
-        UserProfile profile = new UserProfile();
+    assertEquals("testuser", user.getUsername());
+    assertEquals("password123", user.getPassword());
+    assertEquals("test@example.com", user.getEmail());
+    assertEquals(User.Country.NEW_ZEALAND, user.getCountry());
+    assertEquals(User.Currency.NZD, user.getCurrency());
+  }
 
-        assertNull(profile.getUsername());
-        assertNull(profile.getPassword());
-        assertNull(profile.getEmail());
-        assertNull(profile.getCountry());
-        assertNull(profile.getCurrency());
-    }
+  @Test
+  void testDefaultConstructor() {
+    User user = new User();
 
-    @Test
-    void testSetUsername() {
-        UserProfile profile = new UserProfile();
+    assertNull(user.getUsername());
+    assertNull(user.getPassword());
+    assertNull(user.getEmail());
+    assertNull(user.getCountry());
+    assertNull(user.getCurrency());
+  }
 
-        profile.setUsername("testuser");
+  @Test
+  void testSetUsername() {
+    User user = new User();
 
-        assertEquals("testuser", profile.getUsername());
-    }
+    user.setUsername("testuser");
 
-    @Test
-    void testSetPassword() {
-        UserProfile profile = new UserProfile();
+    assertEquals("testuser", user.getUsername());
+  }
 
-        profile.setPassword("password123");
+  @Test
+  void testSetPassword() {
+    User user = new User();
 
-        assertEquals("password123", profile.getPassword());
-    }
+    user.setPassword("password123");
 
-    @Test
-    void testSetEmail() {
-        UserProfile profile = new UserProfile();
+    assertEquals("password123", user.getPassword());
+  }
 
-        profile.setEmail("test@example.com");
+  @Test
+  void testSetEmail() {
+    User user = new User();
 
-        assertEquals("test@example.com", profile.getEmail());
-    }
+    user.setEmail("test@example.com");
 
-    @Test
-    void testSetCountry() {
-        UserProfile profile = new UserProfile();
+    assertEquals("test@example.com", user.getEmail());
+  }
 
-        profile.setCountry(UserProfile.Country.NEW_ZEALAND);
+  @Test
+  void testSetCountry() {
+    User user = new User();
 
-        assertEquals(UserProfile.Country.NEW_ZEALAND, profile.getCountry());
-    }
+    user.setCountry(User.Country.NEW_ZEALAND);
 
-    @Test
-    void testSetCurrency() {
-        UserProfile profile = new UserProfile();
+    assertEquals(User.Country.NEW_ZEALAND, user.getCountry());
+  }
 
-        profile.setCurrency(UserProfile.Currency.NZD);
+  @Test
+  void testSetCurrency() {
+    User user = new User();
 
-        assertEquals(UserProfile.Currency.NZD, profile.getCurrency());
-    }
+    user.setCurrency(User.Currency.NZD);
+
+    assertEquals(User.Currency.NZD, user.getCurrency());
+  }
 }
