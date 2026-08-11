@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import './UserProfile.css';
 
-// Constants
 const countries = [
   { name: 'New Zealand', value: 'NEW_ZEALAND', currency: 'NZD' },
   { name: 'Australia', value: 'AUSTRALIA', currency: 'AUD' }
@@ -14,7 +13,6 @@ const currencies = [
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-// UserProfile Component
 function UserProfile() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -76,20 +74,20 @@ function UserProfile() {
 
     if (Object.keys(validationErrors).length === 0) {
 
-      const profile = {
+      const user = {
         username: username,
-        email: email,
         password: password,
+        email: email,
         country: country,
         currency: currency
       };
 
-      const response = await fetch('http://localhost:8080/users/profile', {
+      const response = await fetch('http://localhost:8080/users/register', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(profile)
+        body: JSON.stringify(user)
       });
 
 
@@ -98,11 +96,7 @@ function UserProfile() {
           email: 'Email is already registered'
         });
       } else {
-        //
-        //
         // TODO: Redirect to the next page.
-        //
-        //
       }
     }
   }

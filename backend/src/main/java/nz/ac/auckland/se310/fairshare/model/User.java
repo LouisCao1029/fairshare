@@ -25,7 +25,7 @@ public class User {
   public User(String username, String password, String email, Country country, Currency currency) {
     this.username = username;
     this.password = password;
-    this.email = email.trim().toLowerCase();
+    this.email = email;
     this.country = country;
     this.currency = currency;
   }
@@ -55,14 +55,11 @@ public class User {
   }
 
   public void setPassword(String password) {
-
-    // TODO: Hash the password before storing it (BCrypt)
-
     this.password = password;
   }
 
   public void setEmail(String email) {
-    this.email = email.trim().toLowerCase();
+    this.email = email;
   }
 
   public void setCountry(Country country) {

@@ -3,6 +3,7 @@ package nz.ac.auckland.se310.fairshare.model;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
+
 import org.springframework.stereotype.Component;
 
 @Component
