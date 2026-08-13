@@ -1,5 +1,9 @@
 package nz.ac.auckland.se310.fairshare.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "users")
 public class User {
 
   public enum Country {
@@ -14,10 +18,18 @@ public class User {
     // Add more currencies as needed
   }
 
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+
   private String username;
   private String password;
   private String email;
+
+  @Enumerated(EnumType.STRING)
   private Country country;
+
+  @Enumerated(EnumType.STRING)
   private Currency currency;
 
   public User() {}

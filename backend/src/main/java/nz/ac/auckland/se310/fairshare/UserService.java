@@ -1,23 +1,22 @@
 package nz.ac.auckland.se310.fairshare;
 
 import nz.ac.auckland.se310.fairshare.model.User;
-import nz.ac.auckland.se310.fairshare.model.UserDB;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
 public class UserService {
-  private final UserDB userDB;
+  private final UserRepository userRepository;
   private final PasswordEncoder encoder;
 
-  public UserService(UserDB userDB, PasswordEncoder encoder) {
-    this.userDB = userDB;
+  public UserService(UserRepository userRepository, PasswordEncoder encoder) {
+    this.userRepository = userRepository;
     this.encoder = encoder;
   }
 
   public synchronized void register(User user) {
 
-    if (userDB.findUser(user.getEmail()).isPresent()) {
+    if (userRepository.findByEmail(user.getEmail()).isPresent()) {
       throw new IllegalArgumentException("Email already in use");
     }
 
@@ -25,6 +24,6 @@ public class UserService {
     user.setPassword(hashedPassword);
     user.setEmail(user.getEmail().trim().toLowerCase());
 
-    userDB.addUser(user);
+    userRepository.save(user);
   }
 }
