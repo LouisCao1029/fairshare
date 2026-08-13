@@ -16,23 +16,23 @@ class UserTests {
             "test@example.com",
             User.Country.NEW_ZEALAND,
             User.Currency.NZD);
-
-    assertEquals("testuser", user.getUsername());
-    assertEquals("password123", user.getPassword());
-    assertEquals("test@example.com", user.getEmail());
-    assertEquals(User.Country.NEW_ZEALAND, user.getCountry());
-    assertEquals(User.Currency.NZD, user.getCurrency());
+    assertAll(
+        () -> assertEquals("testuser", user.getUsername()),
+        () -> assertEquals("password123", user.getPassword()),
+        () -> assertEquals("test@example.com", user.getEmail()),
+        () -> assertEquals(User.Country.NEW_ZEALAND, user.getCountry()),
+        () -> assertEquals(User.Currency.NZD, user.getCurrency()));
   }
 
   @Test
   void testDefaultConstructor() {
     User user = new User();
-
-    assertNull(user.getUsername());
-    assertNull(user.getPassword());
-    assertNull(user.getEmail());
-    assertNull(user.getCountry());
-    assertNull(user.getCurrency());
+    assertAll(
+        () -> assertNull(user.getUsername()),
+        () -> assertNull(user.getPassword()),
+        () -> assertNull(user.getEmail()),
+        () -> assertNull(user.getCountry()),
+        () -> assertNull(user.getCurrency()));
   }
 
   @Test
